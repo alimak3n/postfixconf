@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 MAIN_CF=/etc/postfix/main.cf
-SASL_PASSWD=/etc/postfix/sasl_passwd
+SASL_DIR=/Users/${USER}/.postfix
+SASL_PASSWD=${SASL_DIR}/sasl_passwd
 HOSTNAME_PORT=
 USERNAME=
 PASSWORD=
@@ -114,8 +115,8 @@ else
     configure_smtp
 fi
 
-sudo chmod 600 /etc/postfix/sasl_passwd
-sudo postmap /etc/postfix/sasl_passwd
+sudo chmod 600 ${SASL_PASSWD}
+sudo postmap ${SASL_PASSWD}
 
 echo "Restarting postfix"
 sudo launchctl stop org.postfix.master
